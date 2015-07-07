@@ -101,7 +101,9 @@
         return;
     }
     
-    [self adjustActionFrame];
+    if (!CGSizeEqualToSize(CGSizeZero, self.bounds.size)) {
+        [self adjustActionFrame];
+    }
 }
 
 - (void)setNumberOfLines:(NSInteger)numberOfLines {
