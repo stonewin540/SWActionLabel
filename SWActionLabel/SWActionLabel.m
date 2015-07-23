@@ -23,7 +23,7 @@
     CGRect actionFrame;
     if (self.actionIdentifier)
     {
-        actionFrame = self.actionFrame;
+        actionFrame = [self frameOfActionText:self.actionIdentifier];
         // expend tap region
         actionFrame.size.height = CGRectGetHeight(self.bounds);
         {// set the smallest width between bounds and actionWidth
@@ -94,16 +94,7 @@
         return;
     }
     _actionIdentifier = [actionText copy];
-    
-    self.actionFrame = [self frameOfActionText:self.actionIdentifier];
-    if (CGRectEqualToRect(self.actionFrame, CGRectInfinite))
-    {
-        return;
-    }
-    
-    if (!CGSizeEqualToSize(CGSizeZero, self.bounds.size)) {
-        [self adjustActionFrame];
-    }
+    [self setNeedsLayout];
 }
 
 - (void)setNumberOfLines:(NSInteger)numberOfLines {
